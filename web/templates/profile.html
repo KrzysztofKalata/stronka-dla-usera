@@ -1,0 +1,47 @@
+<!doctype>
+<html>
+    <header>
+        <link rel="stylesheet" href="/static/main.css"></link>
+    </header>
+    <header>
+        Hop Siup! - Krzysztof Kalata
+    </header>
+        <body>
+            <div class="navigationBar">
+                <a href="/sender/dashboard">Panel przesyłek</a>
+                <a class='active' href="/sender/profile">Panel uzytkownika</a>
+            </div>
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <ul class="flashes">
+                        {% for message in messages %}
+                        <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endwith %}
+
+            <h3>Informacje o Twoim profilu</h3>
+            <ul>
+                <li>Login: {{profile_informations.get('login')}}</li>
+                <li>Imię: {{profile_informations.get('firstname')}}</li>
+                <li>Nazwisko: {{profile_informations.get('lastname')}}</li>
+                <li>Adres: {{profile_informations.get('address')}}</li>
+                <li>Adres mailowy: {{profile_informations.get('emailAddress')}}</li>
+            </ul>
+
+            <form action="/sender/logout" method="POST" id ="logout">
+                <h3>Tutaj mozesz sie wylogowac, ale będziemy tęsknić ;(</h3>
+                <ul>                  
+                    <li><input type="submit", id="submit", name="submit", value="Wyloguj się" ></li>
+                </ul>
+            </form>
+    
+            <footer>
+                <ul>
+                    <li>2020</li>
+                    <li>https://github.com/KrzysztofKalata/pamiw</li>
+                </ul>
+            </footer>
+        </body>
+</html>

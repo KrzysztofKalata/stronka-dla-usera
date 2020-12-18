@@ -1,0 +1,40 @@
+<!doctype>
+<html>
+    <header>
+        <link rel="stylesheet" href="/static/main.css"></link>
+    </header>
+    <header>
+        Hop Siup! - Krzysztof Kalata
+    </header>
+        <body>
+            <div class="navigationBar">
+                <a href="/">Home</a>
+                <a class ="active" href="/sender/login">Login</a>
+                <a href="/sender/register">Register</a>
+            </div>
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <ul class="flashes">
+                        {% for message in messages %}
+                        <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endwith %}
+            <form action="/sender/login" method="POST" id ="register" enctype="multipart/form-data">
+                <ul>
+                    <li>Podaj login:</li>
+                    <li><input type="text", id="login" name="login", placeholder="Nazwa użytkownika"></li>
+                    <li>Podaj hasło:</li>
+                    <li><input type="password", id="password" name="password", placeholder="Hasło"></li>  
+                    <li><input type="submit", id="submit", name="submit", value="Zaloguj się"></li>
+                </ul>
+            </form>
+            <footer>
+                <ul>
+                    <li>2020</li>
+                    <li>https://github.com/KrzysztofKalata/pamiw</li>
+                </ul>
+            </footer>
+        </body>
+</html>

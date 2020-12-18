@@ -1,0 +1,56 @@
+<!doctype>
+<html>
+    <head>
+        <link rel="stylesheet" href="/static/main.css"></link>
+        <!-- <script src="/static/main.js" defer></script> -->
+    </head>
+    <header>
+        Hop Siup! - Krzysztof Kalata
+    </header>
+        <body>
+            <div class="navigationBar">
+                <a href="/">Home</a>
+                <a href="/sender/login">Login</a>
+                <a class="active" href="/sender/register">Register</a>
+            </div>
+
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <ul class="flashes">
+                        {% for message in messages %}
+                        <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endwith %}
+
+            <h1>Formularz rejestracyjny</h1>
+            <h4>Witamy w formularzu rejestracyjnym, proszę podaj nam swoje dane:</h4>
+            <form action="/sender/register" method="POST" id ="register" enctype="multipart/form-data">
+                <ul>
+                    <li>Twoja UNIKATOWA nazwa użytkownika (moze składać się z samych liter):</li>
+                    <li><input type="text", id="login" name="login", placeholder="Nazwa użytkownika"></li>
+                    <li>Twoje super tajne haslo (Pssst... Przynajmniej 8 znakow...):</li>
+                    <li><input type="password", id="password" name="password", placeholder="Hasło"></li>
+                    <li>I jeszcze raz poproszę, to samo!:</li>
+                    <li><input type="password", id="confirmPassword" name="confirmPassword", placeholder="Powtórzone hasło"></li>
+                    <li>A teraz imię:</li>
+                    <li><input type="text", id="firstname" name="firstname", placeholder="Imię"></li>
+                    <li>Nazwisko poproszę:</li>
+                    <li><input type="text", id="lastname" name="lastname", placeholder="Nazwisko"></li>
+                    <li>Jeszcze tylko adres</li>
+                    <li><input type="text", id="address" name="address", placeholder="Adres"></li>
+                    <li>No i ten mailowy!</li>
+                    <li><input type="email", id="emailAddress" name="emailAddress", placeholder="Adres email"></li>                      
+                    <li>A ten guziczek zadziała jak spełnisz wszystkie waruneczki</li>
+                    <li><input type="submit", id="submit", name="submit", value="Zarejestruj" ></li>
+                </ul>
+            </form>
+            <footer>
+                <ul>
+                    <li>2020</li>
+                    <li>https://github.com/KrzysztofKalata/pamiw</li>
+                </ul>
+            </footer>
+        </body>
+</html>

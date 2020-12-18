@@ -1,0 +1,44 @@
+<!doctype>
+<html>
+    <header>
+        <link rel="stylesheet" href="/static/main.css"></link>
+    </header>
+    <header>
+        Hop Siup! - Krzysztof Kalata
+    </header>
+        <body>
+            <div class="navigationBar">
+                <a href="/sender/dashboard">Panel przesylek</a>
+                <a href="/sender/profile">Panel uzytkownika</a>
+            </div>
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <ul class="flashes">
+                        {% for message in messages %}
+                        <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endwith %}
+            <ul>
+            <li>Nadawca: {{package_info.get('usr')}}</li>
+            <li>Numer paczki: {{package_info.get('sub')}}</li>
+            <li>Id skrytki pocztowej: {{package_info.get('post_office_box_id')}}</li>
+            <li>Wielkosc paczki: {{package_info.get('package_size')}}</li>
+            <li>ID: {{package_info.get('id')}}</li>
+            </ul>
+
+            <form action="/package/{{package_info.get('sub')}}/delete" method="POST" id ="create">
+                <ul>                  
+                    <li><input type="submit", id="submit", name="submit", value="Usun paczke" ></li>
+                </ul>
+            </form>
+
+            <footer>
+                <ul>
+                    <li>2020</li>
+                    <li>https://github.com/KrzysztofKalata/pamiw</li>
+                </ul>
+            </footer>
+        </body>
+</html>

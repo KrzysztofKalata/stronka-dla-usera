@@ -1,0 +1,62 @@
+<!doctype>
+<html>
+    <header>
+        <link rel="stylesheet" href="/static/main.css"></link>
+    </header>
+    <header>
+        Hop Siup! - Krzysztof Kalata
+    </header>
+        <body>
+            <div class="navigationBar">
+                <a class='active' href="/sender/dashboard">Panel przesyłek</a>
+                <a href="/sender/profile">Panel uzytkownika</a>
+            </div>
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <ul class="flashes">
+                        {% for message in messages %}
+                        <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            {% endwith %}
+
+            {% if no_packages %}
+                <h3>Nie masz zadnych paczuszek ;(</h3>
+            {% else %}
+                <h3>Oto Twoje paczuszki!:</h3>
+                <ol>
+                    {% for package, token in tokens.items() %}
+                        <li><a href="/package/{{package}}?token={{token}}">{{package}}</a></li>
+                    {% endfor %}
+            {% endif %}
+                </ol>
+            <form action="/package/create" method="POST" id ="create">
+                <h3>Strzel sobie nową paczuszke!</h3>
+                <ul>                  
+                    <li>
+                        <select name="post_office_box_id" id="post_office_box_id">
+                        <option value="paczkomat1">Paczkomat 1</option>
+                        <option value="paczkomat2">Paczkomat 2</option>
+                        <option value="paczkomat3">Paczkomat 3</option>
+                        </select>
+                    </li>
+                    <li>
+                        <select name="package_size" id="package_size">
+                        <option value="s">S</option>
+                        <option value="m">M</option>
+                        <option value="l">L</option>
+                        </select>
+                    </li>
+                    <li><input type="submit", id="submit", name="submit", value="Dodaj paczke" ></li>
+                </ul>
+            </form>
+
+            <footer>
+                <ul>
+                    <li>2020</li>
+                    <li>https://github.com/KrzysztofKalata/pamiw</li>
+                </ul>
+            </footer>
+        </body>
+</html>
